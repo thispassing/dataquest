@@ -3,14 +3,21 @@ from csv import reader
 read_file = reader(opened_file)
 apps_data = list(read_file)
 
-def extract(col_num):
-    column_data = []
+def freq_table(col_num):
+    column = []    
+    
     for row in apps_data[1:]:
-        column = row[col_num]
-        column_data.append(column)
-    return column_data
+        value = row[col_num]
+        column.append(value)
+        
+    ft_dict = {}
+    
+    for x in column:
+        if x in ft_dict:
+            ft_dict[x] += 1
+        else:
+            ft_dict[x] = 1
+    
+    return ft_dict
 
-genres = extract(11)
-
-
-# something newwww
+ratings_ft = freq_table(7)
